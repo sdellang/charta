@@ -1,10 +1,16 @@
 package charta
-import (
-"k8s.io/client-go/pkg/api/v1"
-)
+
+import "time"
 
 type InternalCV struct {
-	Environment string "json: environment"
-	Name string "json: name"
-	Pods []v1.Pod "json: pods"
+	Name string         `json: "name"`
+	Pods []*InternalPod `json: "pods"`
+}
+
+type InternalPod struct {
+	Name         string            `json: "name"`
+	Env          map[string]string `json: "vars"`
+	CreationTS   time.Time
+	ReplicaCount *int32 `json: "replicacount"`
+	Active       bool   `json: "active"`
 }
