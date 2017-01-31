@@ -1,10 +1,13 @@
 package charta
+
 import (
 	"encoding/json"
 	"net/http"
-	"k8s.io/client-go/kubernetes"
+
 	"github.com/gorilla/mux"
+	"k8s.io/client-go/kubernetes"
 )
+
 var clientset *kubernetes.Clientset
 
 var internalCV *[]InternalCV
@@ -39,12 +42,14 @@ func GetClusterView(w http.ResponseWriter, req *http.Request) {
 
 func GetNamespaces(w http.ResponseWriter, req *http.Request) {
 
-	nsi := make([]string,len(*internalCV))
-	for i := 0; i < len(*internalCV) ; i++ {
+	nsi := make([]string, len(*internalCV))
+	for i := 0; i < len(*internalCV); i++ {
 		nsi[i] = (*internalCV)[i].Name
 	}
 
-	js, err := json.Marshal(nsi)
+	ndto := NamespeceDTO{nsi}
+
+	js, err := json.Marshal(ndto)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -58,9 +63,17 @@ func GetNamespaceView(w http.ResponseWriter, req *http.Request) {
 
 	params := mux.Vars(req)
 
-	for i := 0; i < len(*internalCV) ; i++ {
+	var pl = PodListDTO{Data: nil}
+
+	for i := 0; i < len(*internalCV); i++ {
 		if (*internalCV)[i].Name == params["name"] {
-			js, err := json.Marshal((*internalCV)[i])
+			for _, pod := range (*internalCV)[i].Pods {
+				if pod.Active == true {
+					pd := PodDTO{Name: pod.Name, Env: pod.Env}
+					pl.Data = append(pl.Data, pd)
+				}
+			}
+			js, err := json.Marshal(pl)
 			if err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 				return
@@ -72,4 +85,3 @@ func GetNamespaceView(w http.ResponseWriter, req *http.Request) {
 	}
 
 }
-

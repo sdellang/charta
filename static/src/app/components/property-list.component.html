@@ -1,0 +1,6 @@
+<div *ngFor="let pod of pods">
+    <h3>{{pod.name}}</h3>
+    <ul>
+        <li *ngFor="let prop of pod.vars | vars">{{prop.key}} : {{prop.value}}</li>
+    </ul>
+</div>

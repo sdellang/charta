@@ -8,6 +8,7 @@ import (
 	"k8s.io/client-go/pkg/api/v1"
 )
 
+//LoadNameSpace load namespaces from Kubernetes to build initial cluster view
 func LoadNameSpace(clientset *kubernetes.Clientset) (*[]InternalCV, error) {
 
 	nsi, err := clientset.Core().Namespaces().List(v1.ListOptions{})
@@ -24,6 +25,7 @@ func LoadNameSpace(clientset *kubernetes.Clientset) (*[]InternalCV, error) {
 	return &nsl, nil
 }
 
+//LoadPodConfig load POD configuration to build initial cluster view
 func LoadPodConfig(clientset *kubernetes.Clientset, internalNs *[]InternalCV) (*[]InternalCV, error) {
 
 	for i := 0; i < len(*internalNs); i++ {
@@ -48,8 +50,10 @@ func LoadPodConfig(clientset *kubernetes.Clientset, internalNs *[]InternalCV) (*
 	return internalNs, nil
 }
 
+//BuildClusterView build initial cluster view
 func BuildClusterView(clientset *kubernetes.Clientset) (*[]InternalCV, error) {
 
+	fmt.Printf("Building Internal Cluster View")
 	tm, err := LoadNameSpace(clientset)
 	if err != nil {
 		return nil, err
@@ -81,24 +85,21 @@ func convertPod(rc v1.ReplicationController) *InternalPod {
 
 func selectActive(in *InternalCV) {
 	//select the active rc configurations based on last config and active replicas count
-
+	fmt.Printf("Selecting Active ReplicationController configurations")
 	ae := make(map[string]*InternalPod)
 
 	for _, el := range in.Pods {
 
 		nn := el.Name[:strings.Index(el.Name, "-")]
 		ap, ex := ae[nn]
-		fmt.Printf("AE is: %v, AP is %v Ex is: %t \n", ae, ap, ex)
 
 		if ex == true {
 
 			if el.CreationTS.After(ap.CreationTS) {
-				fmt.Printf("Here we are \n")
 				ae[nn] = el
 			}
 
 		} else {
-			fmt.Printf("Actually here \n")
 			ae[nn] = el
 		}
 	}
