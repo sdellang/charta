@@ -1,3 +1,13 @@
-<ul>
-    <li *ngFor="let namespace of namespaces" (click)="loadProperties(namespace)" style="cursor: pointer">{{namespace}}</li>
-</ul>
+<div id="-secondary" class="nav-pf-secondary-nav">
+  <div class="nav-item-pf-header">
+    <a class="secondary-collapse-toggle-pf" data-toggle="collapse-secondary-nav"></a>
+    <span>Namespaces</span>
+  </div>
+  <ul class="list-group">
+    <li *ngFor="let namespace of namespaces" class="list-group-item active " >
+      <a (click)="loadProperties(namespace)" (onPropListVisible)="onPropListVisible($event)" >
+        <span class="list-group-item-value">{{namespace}}</span>
+      </a>
+    </li>
+  </ul>
+</div>

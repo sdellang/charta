@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Anton');
+
+.titlematic {
+    font-family: 'Anton', sans-serif;
+    font-size: 30px;
+    padding-top: 8px;
+}

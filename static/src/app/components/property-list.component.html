@@ -1,6 +1,41 @@
-<div *ngFor="let pod of pods">
+<div class="container-fluid container-pf-nav-pf-vertical container-bg">
+    <div class="row">
+        <span class="distance"></span>
+        <div  *ngFor="let pod of pods" class="col-xs-12 col-sm-6 col-md-8">
+            <div class="card-pf card-pf-accented card-pf-aggregate-status">
+            <h3>{{pod.name}}</h3>
+            <form class="form-horizontal">
+                <div *ngFor="let prop of pod.vars | vars" >
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="exampleInput">key</label>
+                        <div class="col-sm-10">
+                        <input type="text" id="key-{{prop.key}}" class="form-control" value="{{prop.key}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="exampleInputError">value</label>
+                        <div class="col-sm-10">
+                        <input type="text" id="value-{{prop.value}}" class="form-control" value="{{prop.value}}">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="form-group">
+                    <!-- <div class="col-sm-offset-2 col-sm-10"> -->
+                    <button class="btn btn-primary">New Variable</button>
+                    <button type="submit" class="btn btn-default">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+
+<!-- <div *ngFor="let pod of pods">
     <h3>{{pod.name}}</h3>
     <ul>
         <li *ngFor="let prop of pod.vars | vars">{{prop.key}} : {{prop.value}}</li>
     </ul>
-</div>
+</div> -->

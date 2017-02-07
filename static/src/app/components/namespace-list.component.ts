@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { NamespacesService } from '../services/namespaces.service'
@@ -12,6 +12,8 @@ import { DisplayPropertiesService } from '../services/displayProperties.service'
 export class NamespacesListComponent {
     namespaces: string[]
 
+    @Output() onPropListVisible = new EventEmitter<boolean>();
+
     constructor (private namespacesService: NamespacesService,
                  private displayPropertiesService: DisplayPropertiesService) {}
 
@@ -22,7 +24,10 @@ export class NamespacesListComponent {
     }
 
     loadProperties(namespace: string): void {
+        
         this.displayPropertiesService.setProperties(namespace)
+        this.onPropListVisible.emit(true);
+        console.log("loadProperties")
     }
     
 }

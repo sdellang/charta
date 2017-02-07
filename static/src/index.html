@@ -1,8 +1,8 @@
 <!doctype html>
-<html>
+<html class="layout-pf layout-pf-fixed total-bg">
 <head>
   <meta charset="utf-8">
-  <title>Static</title>
+  <title>Config-O-Matic</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,4 +11,29 @@
 <body>
   <app-root>Loading...</app-root>
 </body>
+<!-- PatternFly Styles -->
+<link href="assets/bower_components/patternfly/dist/css/patternfly.min.css" rel="stylesheet" media="screen, print">
+<link href="assets/bower_components/patternfly/dist/css/patternfly-additions.min.css" rel="stylesheet" media="screen, print">
+
+<!-- jQuery -->
+<script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- PatternFly -->
+<script src="assets/bower_components/patternfly/dist/js/patternfly.min.js"></script>
+<!-- MAtchHeight -->
+<script src="assets/bower_components/matchHeight/jquery.matchHeight-min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    // matchHeight the contents of each .card-pf and then the .card-pf itself
+    $(".row-cards-pf > [class*='col'] > .card-pf .card-pf-title").matchHeight();
+    $(".row-cards-pf > [class*='col'] > .card-pf > .card-pf-body").matchHeight();
+    $(".row-cards-pf > [class*='col'] > .card-pf > .card-pf-footer").matchHeight();
+    $(".row-cards-pf > [class*='col'] > .card-pf").matchHeight();
+
+    // Initialize the vertical navigation
+    $().setupVerticalNavigation(true);
+  });
+</script>
 </html>

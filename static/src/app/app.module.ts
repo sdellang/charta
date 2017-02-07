@@ -10,6 +10,7 @@ import { DisplayPropertiesService } from './services/displayProperties.service'
 import { AppComponent } from './app.component';
 import { NamespacesListComponent } from './components/namespace-list.component'
 import { PropertyListComponent } from './components/property-list.component'
+import { CardNamespaceComponent } from './components/card-namespace.component'
 
 import { VarsPipe } from './vars.pipe'
 
@@ -17,7 +18,8 @@ import { VarsPipe } from './vars.pipe'
   declarations: [
     AppComponent,
     NamespacesListComponent,
-    PropertyListComponent,   
+    PropertyListComponent,
+    CardNamespaceComponent,  
     VarsPipe
   ],
   imports: [

@@ -1,5 +1,96 @@
-<h1>
-  {{title}}
-</h1>
-<namespaces></namespaces>
-<properties></properties>
+<!-- navbar -->
+ <nav class="navbar navbar-pf-vertical">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a href="/" class="navbar-brand">
+      <span class="navbar-brand-name titlematic">CONFIG-O-MATIC</span>
+    </a>
+  </div>
+  <nav class="collapse navbar-collapse">
+    <ul class="nav navbar-nav">
+      <li><a href="#" target="_blank" class="nav-item-iconic nav-item-iconic-new-window"><span title="Launch" class="fa fa-external-link"></span></a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right navbar-iconic">
+      <li class="dropdown">
+        <a class="dropdown-toggle nav-item-iconic" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <span title="Notifications" class="fa pficon-flag"></span>
+          <span class="badge">2</span>
+        </a>
+        <div class="dropdown-menu infotip bottom-right">
+          <div class="arrow"></div>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <span class="i pficon pficon-info"></span> Modified Datasources ExampleDS
+            </li>
+            <li class="list-group-item">
+              <span class="i pficon pficon-info"></span> Error: System Failure
+            </li>
+          </ul>
+          <div class="footer">
+            <a>Clear Messages</a>
+          </div>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle nav-item-iconic" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <span title="Help" class="fa pficon-help"></span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li><a href="#">Help</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle nav-item-iconic" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <span title="Username" class="fa pficon-user"></span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <li><a href="#">Preferences</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</nav> <!--/.navbar-->
+
+<!-- vertical Navigation -->
+<div class="nav-pf-vertical
+     nav-pf-vertical-with-sub-menus
+     
+     
+     
+     ">
+  <ul class="list-group">
+    <li class="list-group-item">
+      <a>
+        <span class="fa fa-dashboard" data-toggle="tooltip" title="Dashboard"></span>
+        <span class="list-group-item-value" (click)="setShowDashboard(true)">Overview</span>
+      </a>
+    </li>
+    <li class="list-group-item active secondary-nav-item-pf" data-target="#ipsum-secondary">
+      <a>
+        <span class="fa fa-space-shuttle" data-toggle="tooltip" title="Ipsum"></span>
+        <span class="list-group-item-value">Namespaces</span>
+      </a>
+      <namespaces (onPropListVisible)="onPropListVisible($event)"></namespaces>    
+    </li>
+     <li class="list-group-item">
+      <a>
+        <span class="fa fa-shield" data-toggle="tooltip" title="Dolor"></span>
+        <span class="list-group-item-value">Compare</span>
+        
+      </a>
+    </li>
+  </ul>
+</div>
+<div>
+  <namespaces-card *ngIf="showDashboard"></namespaces-card>
+  <properties *ngIf="showList"></properties>
+</div>

@@ -7,7 +7,8 @@ import {Pod} from '../model/pod'
 
 @Component({
   selector: 'properties',
-  templateUrl: './property-list.component.html'
+  templateUrl: './property-list.component.html',
+  styleUrls: ['../css/main.component.css']
 })
 
 export class PropertyListComponent {

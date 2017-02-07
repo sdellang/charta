@@ -5,6 +5,25 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
 export class AppComponent {
-  title = 'Mariner Mariner';
+  showDashboard: boolean = true;
+  showList: boolean = false
+
+  setShowDashboard(show: boolean): void {
+    this.showDashboard = show;
+  }
+
+  setShowList(show: boolean): void {
+    this.showList = show;
+  }
+
+  onPropListVisible(show: boolean): void {
+    if(show) {
+      this.setShowDashboard(false);
+      this.setShowList(true);
+      console.log("event received - dashboard: "+this.showDashboard+" - list "+this.showList)
+    }
+  }
 }
