@@ -13,18 +13,17 @@ import {Pod} from '../model/pod'
 
 export class PropertyListComponent {
     pods: Pod[]
-    visible: boolean
 
     constructor (private propertiesService: PropertiesService,
                  private displayPropertiesService: DisplayPropertiesService) {}
 
     ngOnInit(): void {
-        this.visible = false
         this.displayPropertiesService.getProperties()
         .subscribe(retns => this.getNsProperties(retns))
     }
 
     getNsProperties(ns: string): void {
+        console.log("getting properties for: "+ns)
         this.propertiesService.getProperties(ns)
         .subscribe(retPods => this.pods = retPods)
     }

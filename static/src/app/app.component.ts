@@ -13,6 +13,7 @@ export class AppComponent {
 
   setShowDashboard(show: boolean): void {
     this.showDashboard = show;
+    this.setShowList(!show);
   }
 
   setShowList(show: boolean): void {

@@ -1,6 +1,5 @@
-<div class="container-fluid container-pf-nav-pf-vertical container-bg">
+<div class="container-fluid container-pf-nav-pf-vertical">
     <div class="row">
-        <span class="distance"></span>
         <div  *ngFor="let pod of pods" class="col-xs-12 col-sm-6 col-md-8">
             <div class="card-pf card-pf-accented card-pf-aggregate-status">
             <h3>{{pod.name}}</h3>
@@ -30,12 +29,3 @@
     </div>
     </div>
 </div>
-
-
-
-<!-- <div *ngFor="let pod of pods">
-    <h3>{{pod.name}}</h3>
-    <ul>
-        <li *ngFor="let prop of pod.vars | vars">{{prop.key}} : {{prop.value}}</li>
-    </ul>
-</div> -->

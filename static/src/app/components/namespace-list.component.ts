@@ -25,7 +25,7 @@ export class NamespacesListComponent {
 
     loadProperties(namespace: string): void {
         
-        this.displayPropertiesService.setProperties(namespace)
+        this.displayPropertiesService.setProperties(namespace);
         this.onPropListVisible.emit(true);
         console.log("loadProperties")
     }

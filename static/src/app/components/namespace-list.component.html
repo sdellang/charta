@@ -5,7 +5,7 @@
   </div>
   <ul class="list-group">
     <li *ngFor="let namespace of namespaces" class="list-group-item active " >
-      <a (click)="loadProperties(namespace)" (onPropListVisible)="onPropListVisible($event)" >
+      <a (click)="loadProperties(namespace)">
         <span class="list-group-item-value">{{namespace}}</span>
       </a>
     </li>
